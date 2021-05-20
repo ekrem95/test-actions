@@ -1,0 +1,22 @@
+name: cron-update-file
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+jobs:
+  cron-update-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.16.0'
+
+      - name: Add time
+        run: go run cron-update-file/main.go
+
+      - name: Update resources
+        uses: test-room-7/action-update-file@v1
+        with:
+            file-path: cron-update-file/time.txt
+            commit-msg: cron-update-file
+            github-token: ${{ secrets.GITHUB_TOKEN }}
