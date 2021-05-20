@@ -1,7 +1,7 @@
 name: cron-update-file
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: '*/15 * * * *'
 jobs:
   cron-update-file:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
       - name: Add time
         run: go run cron-update-file/main.go
 
-      - name: Update resources
+      - name: Update file
         uses: test-room-7/action-update-file@v1
         with:
             file-path: cron-update-file/time.txt
