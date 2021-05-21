@@ -1,7 +1,7 @@
 name: cron-update-file
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 6 1 * *'
 jobs:
   cron-update-file:
     runs-on: ubuntu-latest
